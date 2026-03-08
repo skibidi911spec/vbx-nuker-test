@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<title>NET CONTROL</title>
+<title>VBX NUKER XDXD</title>
 
 <style>
 
@@ -22,7 +22,11 @@ padding:20px;
 
 .logo{
 color:red;
-text-shadow:0 0 12px red;
+font-size:26px;
+text-shadow:
+0 0 5px red,
+0 0 10px red,
+0 0 20px red;
 }
 
 .status{
@@ -69,7 +73,7 @@ overflow:auto;
 
 <div class="sidebar">
 
-<h2 class="logo">NET CONTROL</h2>
+<h2 class="logo">VBX NUKER XDXD</h2>
 
 <div id="status" class="status">OFFLINE</div>
 
@@ -92,8 +96,7 @@ overflow:auto;
 
 async function checkStatus(){
 
-let r = await fetch("https://yourwebsite.com/status.json")
-
+let r = await fetch("status.json")
 let data = await r.json()
 
 let status = document.getElementById("status")

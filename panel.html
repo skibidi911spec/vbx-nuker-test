@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>NET CONTROL</title>
+
+<style>
+
+body{
+background:black;
+color:white;
+font-family:monospace;
+display:flex;
+margin:0;
+}
+
+.sidebar{
+width:220px;
+background:#080808;
+padding:20px;
+}
+
+.logo{
+color:red;
+text-shadow:0 0 12px red;
+}
+
+.status{
+margin:20px 0;
+padding:10px;
+text-align:center;
+background:#300;
+}
+
+button{
+width:100%;
+padding:10px;
+margin-top:10px;
+background:black;
+border:1px solid red;
+color:red;
+}
+
+button.active{
+background:blue;
+}
+
+button:disabled{
+opacity:0.3;
+}
+
+.main{
+flex:1;
+padding:20px;
+}
+
+.log{
+background:black;
+border:1px solid #333;
+height:400px;
+padding:10px;
+overflow:auto;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2 class="logo">NET CONTROL</h2>
+
+<div id="status" class="status">OFFLINE</div>
+
+<button disabled>SYSTEM 1</button>
+<button disabled>SYSTEM 2</button>
+<button disabled>SYSTEM 3</button>
+<button disabled>SYSTEM 4</button>
+
+</div>
+
+<div class="main">
+
+<h2>LIVE LOG</h2>
+
+<div id="log" class="log"></div>
+
+</div>
+
+<script>
+
+async function checkStatus(){
+
+let r = await fetch("https://yourwebsite.com/status.json")
+
+let data = await r.json()
+
+let status = document.getElementById("status")
+let buttons = document.querySelectorAll("button")
+
+if(data.online){
+
+status.innerText = "ONLINE"
+status.style.background="green"
+
+buttons.forEach(b=>b.disabled=false)
+
+}else{
+
+status.innerText = "OFFLINE"
+status.style.background="darkred"
+
+buttons.forEach(b=>b.disabled=true)
+
+}
+
+}
+
+setInterval(checkStatus,2000)
+
+</script>
+
+</body>
+</html>
